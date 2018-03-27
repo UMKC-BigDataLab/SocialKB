@@ -1,0 +1,41 @@
+*friendsCount(user,count)
+*retweeted(user,tweet)
+trending(hashtag)
+*tweeted(user,tweet)
+*followersCount(user,count)
+malicious(link)
+*containsLink(tweet,link)
+*favouritesCount(tweet,count)
+*retweetCount(tweet,count)
+isPossiblySensitive(tweet)
+*statusesCount(user,count)
+isFollowedBy(user1,user2)
+*mentions(tweet,user)
+attacker(user)
+*verified(user)
+*containsHashtag(tweet,hashtag)
+friend(user1,user2)
+
+
+//////////////WEIGHT OF LAST ITERATION//////////////
+5.4922       !tweeted(v0, v1)  v !isPossiblySensitive(v1)  v  attacker(v0)  //11.0
+-8.8971        verified(v0)  v !followersCount(v0, v1)  v !friendsCount(v0, v2)  v  attacker(v0)  v [NOT ((v1 <> 0) AND ((v2 / v1) > 1000))] //12.0
+-10.0599        verified(v0)  v !statusesCount(v0, v1)  v !followersCount(v0, v2)  v  attacker(v0)  v [NOT ((v1 <> 0) AND ((v2 / v1) > 1000))] //14.0
+4.1137       !containsLink(v0, v1)  v !isPossiblySensitive(v0)  v  malicious(v1)  //15.0
+4.5876       !containsLink(v0, v1)  v !malicious(v1)  v  isPossiblySensitive(v0)  //16.0
+19.996       !attacker(v0)  v !tweeted(v0, v1)  v !containsLink(v1, v2)  v  malicious(v2)  //17.0
+21.7977       !attacker(v0)  v !tweeted(v0, v1)  v  isPossiblySensitive(v1)  //18.0
+-11.0119       !tweeted(v0, v1)  v !mentions(v1, v2)  v  friend(v0, v2)  //2.0
+!containsLink(v0, v1)  v !malicious(v1)  v [NOT strpos(v1, "https://twitter.com/") > 0]. //20.0hardfixed
+!containsLink(v0, v1)  v !malicious(v1)  v [NOT strpos(v1, "http://pinterest.com/") > 0]. //21.0hardfixed
+!containsLink(v0, v1)  v !malicious(v1)  v [NOT strpos(v1, "https://www.instagram.com/") > 0]. //22.0hardfixed
+!containsLink(v0, v1)  v !malicious(v1)  v [NOT strpos(v1, "https://www.youtube.com/") > 0]. //23.0hardfixed
+4.6002       !tweeted(v0, v1)  v !containsLink(v1, v2)  v !malicious(v2)  v  attacker(v0)  //3.0
+18.3522       !attacker(v0)  v !friend(v0, v1)  v !isFollowedBy(v0, v1)  v  attacker(v1)  //4.0
+-8.7089       !retweeted(v0, v1)  v !tweeted(v2, v1)  v  friend(v0, v2)  //5.0
+20.4046       !tweeted(v0, v1)  v !containsHashtag(v1, v2)  v !attacker(v0)  v  trending(v2)  //6.0
+12.4964       !verified(v0)  v !attacker(v0)  //7.0
+18.7049       !verified(v0)  v !friend(v0, v1)  v !isFollowedBy(v0, v1)  v !attacker(v1)  //8.0
+21.2378        attacker(v0)  v !tweeted(v0, v1)  v !mentions(v1, v2)  v !attacker(v2)  //9.0
+
+

@@ -1,0 +1,71 @@
+// First set: relationships
+*tweeted(user,tweet)
+*containsLink(tweet,link)
+*containsHashtag(tweet,hashtag)
+*mentions(tweet,user)
+*retweeted(user,tweet)
+*verified(user)
+malicious(link)
+friend(user1,user2)
+trending(hashtag)
+attacker(user)
+isFollowedBy(user1,user2)
+isPossiblySensitive(tweet)
+
+// Second set: various counts
+*friendsCount(user,count)
+*retweetCount(tweet,count)
+*followersCount(user,count)
+*statusesCount(user,count)
+*favouritesCount(tweet,count)
+// Let's define the formulas
+// First the hard rules
+EXIST user tweeted(user,tweet).
+
+// Next the soft rules
+1.0 tweeted(user1,tweet), mentions(tweet,user2) => friend(user1,user2)
+1.0 tweeted(user,tweet), containsLink(tweet,link), malicious(link) => attacker(user)
+
+// modified
+// 1.0 attacker(user1), friend(user1,user2) => attacker(user2)
+1.0 attacker(user1), friend(user1,user2), isFollowedBy(user1,user2) => attacker(user2)
+
+1.0 retweeted(user1,tweet), tweeted(user2,tweet) => friend(user1,user2)
+1.0 tweeted(user,tweet), containsHashtag(tweet,hashtag), attacker(user) => trending(hashtag)
+// removed 1.0 followersCount(user,count1), friendsCount(user, count2), [count1 != 0 AND count2/count1 < 0.01]  => attacker(user)
+// removed 1.0 tweeted(user,tweet), containsLink(tweet,link), [contains(link,"https://t.co/")] => !attacker(user)
+1.0 verified(user) => !attacker(user)
+
+// modified
+// 1.0 verified(user1), friend(user1,user2) => !attacker(user2)
+1.0 verified(user1), friend(user1,user2), isFollowedBy(user1,user2) => !attacker(user2)
+
+1.0 !attacker(user1), tweeted(user1,tweet), mentions(tweet,user2) => !attacker(user2)
+1.0 isFollowedBy(user1,user2), verified(user2) => verified(user1)
+1.0 tweeted(user,tweet), isPossiblySensitive(tweet) => attacker(user)
+// removed 1.0 statusesCount(user,count1), friendsCount(user,count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+// removed 1.0 statusesCount(user,count1), followersCount(user,count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+
+// added
+
+// modified
+// 1.0 !verified(user), followersCount(user,count1), friendsCount(user, count2), [count1 != 0 AND count2/count1 < 0.001] => attacker(user)
+1.0 !verified(user), followersCount(user,count1), friendsCount(user, count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+
+1.0 !verified(user), statusesCount(user,count1), friendsCount(user,count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+1.0 !verified(user), statusesCount(user,count1), followersCount(user,count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+
+1.0 containsLink(tweet,link), isPossiblySensitive(tweet) => malicious(link)
+1.0 containsLink(tweet,link), malicious(link) => isPossiblySensitive(tweet)
+1.0 attacker(user), tweeted(user,tweet), containsLink(tweet,link) => malicious(link)
+1.0 attacker(user), tweeted(user,tweet) => isPossiblySensitive(tweet)
+
+// *favouritesCount(user,count)
+// 1.0 !verified(user), statusesCount(user,count1), favouritesCount(user,count2), [count1 != 0 AND count2/count1 > 1000] => attacker(user)
+containsLink(tweet,link), [contains(link,"https://t.co/")] => !malicious(link).
+containsLink(tweet,link), [contains(link,"https://twitter.com/")] => !malicious(link).
+containsLink(tweet,link), [contains(link,"http://pinterest.com/")] => !malicious(link).
+containsLink(tweet,link), [contains(link,"https://www.instagram.com/")] => !malicious(link).
+containsLink(tweet,link), [contains(link,"https://www.youtube.com/")] => !malicious(link).
+containsLink(tweet,link), [contains(link,"https://www.flickr.com/")] => !malicious(link).
+
