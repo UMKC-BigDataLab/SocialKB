@@ -1,5 +1,7 @@
 # SocialKB
-A system for modeling Twitter data and reasoning about the data for discovering malicious content and suspicious users
+SocialKB is a system for modeling Twitter data and reasoning about the data for discovering malicious content and suspicious users.
+
+SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses Tuffy as the MLN engine. Tuffy has been obtained from http://i.stanford.edu/hazy/tuffy/. Please visit this page to download Tuffy.
 
 # Publications
 
