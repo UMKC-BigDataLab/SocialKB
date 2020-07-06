@@ -5,9 +5,13 @@ SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses T
 
 # Publications
 
-* Praveen Rao, Anas Katib, Charles Kamhoua, Kevin Kwiat, and Laurent Njilla. “Probabilistic Inference on Twitter Data to Discover Suspicious Users and Malicious Content.” In the 2nd IEEE International Symposium on Security and Privacy in Social Networks and Big Data (SocialSec 2016), pages 407-414, Nadi, Fiji, December 2016. [PDF](http://r.web.umkc.edu/raopr/SocialKB-SocialSec-2016.pdf)
+* Praveen Rao, Anas Katib, Charles Kamhoua, Kevin Kwiat, and Laurent Njilla. "Probabilistic Inference on Twitter Data to Discover Suspicious Users and Malicious Content." In the 2nd IEEE International Symposium on Security and Privacy in Social Networks and Big Data (SocialSec 2016), pages 407-414, Nadi, Fiji, December 2016. [PDF](http://r.web.umkc.edu/raopr/SocialKB-SocialSec-2016.pdf)
 
-* Praveen Rao, Charles Kamhoua, Laurent Njilla, Kevin Kwiat - Methods to Detect Cyberthreats on Twitter. In Surveillance in Action - Technologies for Civilian, Military and Cyber Surveillance, pages 333-350, Springer, 2017.
+* Praveen Rao, Charles Kamhoua, Laurent Njilla, Kevin Kwiat. "Methods to Detect Cyberthreats on Twitter." In Surveillance in Action - Technologies for Civilian, Military and Cyber Surveillance, pages 333-350, Springer, 2017.
+
+# Patents
+
+* Praveen Rao, Charles Kamhoua, Kevin Kwiat, Laurent Njilla. "System and Article of Manufacture to Analyze Twitter Data to Discover Suspicious Users and Malicious Content," US Patent, Sr. No. 10,348,752, July 9, 2019.
 
 # Contributors
 
