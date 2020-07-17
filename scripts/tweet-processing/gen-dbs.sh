@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Generate evidance datasets by processing tweets stored in multiple directories inside input directory (e.g. tweets-dir/)
-# Usage: ./gen-dbs.sh tweets-dir/ evd-dbs-out/  [> gen-dbs.log]
 #
 #	Example: 
 #	INPUT:
@@ -31,8 +30,7 @@ for F in $DIRS
 do
    f=$( echo $F |  tr '/' '\n' | tail -1)
    echo $F '>>>>>'
-   java -Xmx70g -Xms1g -XX:MaxPermSize=1g -XX:ReservedCodeCacheSize=2g  -jar ProcTweets/GenerateEvd.jar  $F BLKLSTS/domains.txt BLKLSTS/urls.txt $2/evidence.$f.db true
+   spark-submit --class edu.umkc.ProcessTweets ../../BuildEvidence/target/scala-2.11/BuildEvidence-assembly-0.1.jar $F BLKLSTS/domains.txt BLKLSTS/urls.txt $2/evidence.$f.db true $3 $4 $5 $6
 done
 
 exit 0
-
