@@ -28,14 +28,14 @@ SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses T
         cd ../scripts/tweet-processing && bash gen-dbs.sh <TWEETS_OUTPUT_DIR> <EVIDENCE_DIR> <CONSUMER_KEY> <CONSUMER_SECRET> <ACCESS_TOKEN> <ACCESS_TOKEN_SECRET>
         ```
 
-3. Weight learning
+3. Setup Tuffy
     1. Setup PostgreSQL 
         ```
         cd scripts && bash postgresql_setup.sh
         ```
     2. Update `tuffy.conf` with the username
 
-4. Start weight learning
+4. Weight Learning
     ```
     java -jar tuffy.jar -learnwt -e <EVIDENCE_DIR>/evidence.db -i input/prog.mln -queryFile input/query.db -r lrnt.prog.mln -mcsatSamples 50 -dMaxIter 100
     ```
