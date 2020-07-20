@@ -63,7 +63,7 @@ SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses T
 
 ***Faculty:*** Praveen Rao (PI)
 
-***PhD Students:*** Anas Katib
+***PhD Students:*** Anas Katib, Arun Zachariah
 
 ***Others:*** Charles Kamhoua, Kevin Kwiat, and Laurent Njilla
 
