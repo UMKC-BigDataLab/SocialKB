@@ -13,7 +13,7 @@ SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses T
     1. Update twitter keys along with the number of tweets to be collected at `scripts/construct-evidence.sh`
     2. Construct evidence db
         ```
-        bash construct-evidence.sh
+        cd scripts && bash construct-evidence.sh
         ```
  
 3. Setup Tuffy
