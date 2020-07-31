@@ -4,30 +4,18 @@ SocialKB is a system for modeling Twitter data and reasoning about the data for 
 SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses Tuffy as the MLN engine. Tuffy has been obtained from http://i.stanford.edu/hazy/tuffy/. Please visit this page to download Tuffy.
 
 ## Setup
-1. Collect Twitter Data
-    1. Build the code
+1. System Setup.
+    ```
+    cd scripts && source setup.sh
+    ```
+   
+2. Collect Twitter Data and Construct Evidence
+    1. Update twitter keys along with the number of tweets to be collected at `scripts/construct-evidence.sh`
+    2. Construct evidence db
         ```
-        cd CollectData && sbt clean assembly
+        bash construct-evidence.sh
         ```
-    2. Collect tweets
-        ```
-        spark-submit --class edu.umkc.CollectTweets <TWEETS_PARTS_DIR> <INTERVAL_IN_SECS> <NUM_TO_COLLECT> <CONSUMER_KEY> <CONSUMER_SECRET> <ACCESS_TOKEN> <ACCESS_TOKEN_SECRET>
-        ```
-    3. To consolidate the collected tweets
-        ```
-        cd ../scripts/tweet-processing && ./tweets-copier.sh <SOFT_LIMIT> <TWEETS_PARTS_DIR> <TWEETS_OUTPUT_DIR>
-        ```
-
-2. Construct Evidence
-    1. Build the code:
-        ```
-        cd BuildEvidence && sbt clean assembly
-        ```
-    2. Construct the evidence
-        ```
-        cd ../scripts/tweet-processing && bash gen-dbs.sh <TWEETS_OUTPUT_DIR> <EVIDENCE_DIR> <CONSUMER_KEY> <CONSUMER_SECRET> <ACCESS_TOKEN> <ACCESS_TOKEN_SECRET>
-        ```
-
+ 
 3. Setup Tuffy
     1. Setup PostgreSQL 
         ```
