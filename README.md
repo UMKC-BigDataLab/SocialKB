@@ -4,30 +4,35 @@ SocialKB is a system for modeling Twitter data and reasoning about the data for 
 SocialKB uses Markov logic networks (MLNs) for modeling and inference. It uses Tuffy as the MLN engine. Tuffy has been obtained from http://i.stanford.edu/hazy/tuffy/. Please visit this page to download Tuffy.
 
 ## Setup
-1. System Setup.
+1. Clone the repository
+    ```
+    git clone https://github.com/UMKC-BigDataLab/SocialKB.git 
+    ```
+    
+2. System Setup
     ```
     cd scripts && source setup.sh
     ```
    
-2. Collect Twitter Data and Construct Evidence
+3. Collect Twitter Data and Construct Evidence
     1. Update twitter keys along with the number of tweets to be collected at `scripts/construct-evidence.sh`
     2. Construct evidence db
         ```
         cd scripts && bash construct-evidence.sh
         ```
  
-3. Setup Tuffy
+4. Setup Tuffy
     1. Setup PostgreSQL 
         ```
         cd scripts && bash postgresql_setup.sh
         ```
     2. Update `tuffy.conf` with the username
 
-4. Weight Learning
+5. Weight Learning
     ```
     java -jar tuffy.jar -learnwt -e <EVIDENCE_DIR>/evidence.db -i input/prog.mln -queryFile input/query.db -r lrnt.prog.mln -mcsatSamples 50 -dMaxIter 100
     ```
-5. Inference
+6. Inference
     1. MAP Inference:
         ```
         java -jar tuffy.jar -e <EVIDENCE_DIR>/evidence.db -i input/lrnt.prog.mln  -queryFile input/query.db -r out.txt
