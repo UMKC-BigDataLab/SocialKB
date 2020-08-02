@@ -7,9 +7,9 @@ tar -xvf jdk-8u131-linux-x64.tar.gz
 
 # Adding Java to the path.
 export JAVA_HOME=$HOME/jdk1.8.0_131
-echo 'export JAVA_HOME='$HOME'/jdk1.8.0_131' >> /users/$USER/.profile
+echo 'export JAVA_HOME='$HOME'/jdk1.8.0_131' >> /users/$USER/.bashrc
 export PATH=$PATH:$JAVA_HOME/bin
-echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /users/$USER/.profile
+echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /users/$USER/.bashrc
 
 # Downloading Scala.
 cd $HOME && wget https://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz
@@ -17,9 +17,9 @@ tar -xvf scala-2.11.8.tgz
 
 # Adding Scala to the path.
 export SCALA_HOME=$HOME/scala-2.11.8
-echo 'export SCALA_HOME='$HOME'/scala-2.11.8' >> /users/$USER/.profile
+echo 'export SCALA_HOME='$HOME'/scala-2.11.8' >> /users/$USER/.bashrc
 export PATH=$PATH:$SCALA_HOME/bin
-echo 'export PATH=$PATH:$SCALA_HOME/bin' >> /users/$USER/.profile
+echo 'export PATH=$PATH:$SCALA_HOME/bin' >> /users/$USER/.bashrc
 
 # Setting up sbt.
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
@@ -33,6 +33,6 @@ tar -xvf spark-2.4.5-bin-hadoop2.7.tgz
 
 # Adding Spark to the path.
 export SPARK_HOME=$HOME/spark-2.4.5-bin-hadoop2.7
-echo 'export SPARK_HOME='$HOME'/spark-2.4.5-bin-hadoop2.7' >> /users/$USER/.profile
+echo 'export SPARK_HOME='$HOME'/spark-2.4.5-bin-hadoop2.7' >> /users/$USER/.bashrc
 export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-echo 'export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> /users/$USER/.profile
+echo 'export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> /users/$USER/.bashrc
