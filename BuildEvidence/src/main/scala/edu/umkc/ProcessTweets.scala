@@ -121,7 +121,11 @@ object ProcessTweets {
           while (ids.hasNext) {
             list.append(ids.next())
             folCount += 1
-
+            // Temp changes to restrict friends/follwers to 500 - Start
+            if (folCount >= 500) {
+              return list.toList
+            }
+            // Temp changes to restrict friends/follwers to 500 - End
           }
 
           cursor = statuses.getNextCursor
